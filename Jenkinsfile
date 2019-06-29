@@ -49,7 +49,7 @@ pipeline {
                 script {
                     /* This builds the actual image; synonymous to
                     * docker build on the command line */
-                    dockerImg = docker.build("dd999/tcsapp")
+                    dockerImg = docker.build("dd999/myapp")
                 }
             }
         }
@@ -73,7 +73,7 @@ pipeline {
     post {
         success {
             echo "Send success email notification"
-            mail bcc: '', body: " Build Status : Success <br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br>Build URL: ${env.BUILD_URL} <br>App URL: http://34.93.78.26/addressbook", cc: '', charset: 'UTF-8',  mimeType: 'text/html', replyTo: '', subject: "Jenkins Build Status -> ${env.JOB_NAME}", to: "shimmersonal@gmail.com";
+            mail bcc: '', body: " Build Status : Success <br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br>Build URL: ${env.BUILD_URL} <br>App URL: http://34.93.124.155/addressbook", cc: '', charset: 'UTF-8',  mimeType: 'text/html', replyTo: '', subject: "Jenkins Build Status -> ${env.JOB_NAME}", to: "shimmersonal@gmail.com";
         }
         failure {
             echo "send failure email notification"
