@@ -62,6 +62,8 @@ pipeline {
                         withCredentials([userPass(credentialsId: 'docker-hub-credentials',passwordVariabl 
                         sh 'docker run --name myapp -p 8080:8080 -v /var/run/docker.sock:/var/run/docker.sock dd999/myapp'*/
                     /*dockerImage = docker.build registry + ":$BUILD_NUMBER"*/
+                    sh 'sudo usermod -a -G docker $USER'
+                    sh 'sudo snap connect docker:home'
                     sh 'sudo chown jenkins:jenkins /root/.docker -R'
                     dockerImg = docker.build("dd999/myapp")
                 }
