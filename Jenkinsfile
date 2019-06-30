@@ -17,7 +17,7 @@ pipeline {
         stage ('Test Package') {
             steps {
                 /* test application using maven */
-                sh 'mvn test'
+                sh 'MyMaven test'
             }
             post {
                 always {
@@ -32,7 +32,7 @@ pipeline {
         stage ('Compile & Package') {
             steps {
                 /* Package Application using maven */
-                sh 'mvn package'
+                sh 'MyMaven package'
             }
         }
 
@@ -40,7 +40,7 @@ pipeline {
             steps {
                 /* Static code analysis with SonarQube */
                 withSonarQubeEnv('sonar') {
-                    sh 'mvn sonar:sonar'
+                    sh 'MyMaven sonar:sonar'
                 }
             }
         }
