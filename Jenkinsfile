@@ -60,6 +60,7 @@ pipeline {
                     /*dir('ci_helper){
                         sh 'sudo docker build -t dd999/myapp:${env.BUILD_NUMBER} .'
                         withCredentials([userPass(credentialsId: 'docker-hub-credentials',passwordVariabl */
+                        sh 'docker run --name myapp -p 8080:8080 -v /var/run/docker.sock:/var/run/docker.sock dd999/myapp'
                     dockerImage = docker.build registry + ":$BUILD_NUMBER"
                     /*dockerImg = docker.build("dd999/myapp")*/
                 }
