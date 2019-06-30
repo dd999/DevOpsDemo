@@ -3,6 +3,11 @@
 def dockerImg
 
 pipeline {
+    environment {
+    registry = "dd999/myapp"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+  }
     agent {
         label 'master'
     }
@@ -52,7 +57,11 @@ pipeline {
                 script {
                     /* This builds the actual image; synonymous to
                     * docker build on the command line */
-                    dockerImg = docker.build("dd999/myapp")
+                    /*dir('ci_helper){
+                        sh 'sudo docker build -t dd999/myapp:${env.BUILD_NUMBER} .'
+                        withCredentials([userPass(credentialsId: 'docker-hub-credentials',passwordVariabl */
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    /*dockerImg = docker.build("dd999/myapp")*/
                 }
             }
         }
