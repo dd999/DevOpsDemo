@@ -22,7 +22,7 @@ pipeline {
                     /* Perform JUnit testing
                     * sh './gradlew check' */
                     archiveArtifacts "target/**/*"
-                    junit '**/target/*-reports/TEST-*.xml'
+                    junit '**/target/*-reports/*.xml'
                 }
             }
         }
