@@ -3,7 +3,9 @@
 def dockerImg
 
 pipeline {
-    agent any
+    agent {
+        label 'master'
+    }
     stages {
         stage ('Clone Repo') {
             steps {
