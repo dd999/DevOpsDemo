@@ -6,7 +6,20 @@ pipeline {
     agent {
         label 'master'
     }
+    tools {
+        maven 'Maven 3.3.9'
+        jdk 'jdk8'
+    }
+
     stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+            }
+        }
         stage ('Clone Repo') {
             steps {
                 /* Clone git Repository */
@@ -17,7 +30,7 @@ pipeline {
         stage ('Test Package') {
             steps {
                 /* test application using maven */
-                sh 'MyMaven test'
+                sh 'mvn test'
             }
             post {
                 always {
@@ -32,7 +45,7 @@ pipeline {
         stage ('Compile & Package') {
             steps {
                 /* Package Application using maven */
-                sh 'MyMaven package'
+                sh 'mvn package'
             }
         }
 
@@ -40,7 +53,7 @@ pipeline {
             steps {
                 /* Static code analysis with SonarQube */
                 withSonarQubeEnv('sonar') {
-                    sh 'MyMaven sonar:sonar'
+                    sh 'mvn sonar:sonar'
                 }
             }
         }
