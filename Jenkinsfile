@@ -7,7 +7,7 @@ pipeline {
         label 'master'
     }
     tools {
-        MyMaven 'Maven 3.3.9'
+        Maven 'MyMaven 3.6.1'
     }
 
     stages {
