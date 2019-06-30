@@ -18,7 +18,7 @@ pipeline {
         stage ('Test Package') {
             steps {
                 /* test application using maven */
-                sh 'Maven test'
+                sh 'mvn test'
             }
             post {
                 always {
