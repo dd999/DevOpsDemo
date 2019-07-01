@@ -67,7 +67,7 @@ pipeline {
                     sh 'sudo chmod g+rw ~/.docker/config.json'
                     sh "sudo usermod -a -G docker $USER"
                    /* sh 'sudo snap connect docker:home'*/
-                    sh 'sudo chown jenkins:jenkins /root/.docker -R'
+                    /*sh 'sudo chown jenkins:jenkins /root/.docker -R'*/
                     dockerImg = docker.build("dd999/myapp")
                 }
             }
