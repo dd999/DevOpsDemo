@@ -89,14 +89,18 @@ pipeline {
         }
     }
  
-        stage ('Selenium Tests')
+        /*stage ('Selenium Tests')
             steps {
                 echo "Selenium tests"
                 script { 
                     sh 'mvn failsafe:integration-test -Dskip.surefire.tests -Dapp.url=http://localhost:8080/'
                 }
-            }
+            }*/
                 
+        STAGE ('Deploy')
+           steps {
+               sh "sudo docker run -itd --name container-$BUILD_NUMBER -p 8080:8082 dd999/myapp:${env.BUILD_NUMBER}"
+           }
     post {
         success {
             echo "Send success email notification"
