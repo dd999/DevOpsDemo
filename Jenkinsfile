@@ -87,6 +87,10 @@ pipeline {
                 }
             }
         }
+        stage ('Deploy')
+           steps {
+               sh "sudo docker run -itd --name container-$BUILD_NUMBER -p 8080:8082 dd999/myapp:${env.BUILD_NUMBER}"
+           }
     }
  
         /*stage ('Selenium Tests')
@@ -97,10 +101,7 @@ pipeline {
                 }
             }*/
                 
-        stage ('Deploy')
-           steps {
-               sh "sudo docker run -itd --name container-$BUILD_NUMBER -p 8080:8082 dd999/myapp:${env.BUILD_NUMBER}"
-           }
+       
     post {
         success {
             echo "Send success email notification"
