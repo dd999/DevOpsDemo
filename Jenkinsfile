@@ -88,7 +88,15 @@ pipeline {
             }
         }
     }
-
+ 
+        stage ('Selenium Tests')
+            steps {
+                echo "Selenium tests"
+                script { 
+                    sh 'mvn failsafe:integration-test -Dskip.surefire.tests -Dapp.url=http://localhost:8080/'
+                }
+            }
+                
     post {
         success {
             echo "Send success email notification"
