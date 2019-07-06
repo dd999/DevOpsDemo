@@ -91,7 +91,7 @@ pipeline {
              steps {
                  echo "Run containers"
                  script {
-                 sh "sudo docker run -itd --name container-$BUILD_NUMBER -p 8080:8082 dd999/myapp:${env.BUILD_NUMBER}"
+                 sh "sudo docker run -itd --name container-$BUILD_NUMBER -p 8082:8082 dd999/myapp:${env.BUILD_NUMBER}"
                  }
              }
            }
