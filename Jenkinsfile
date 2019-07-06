@@ -87,8 +87,7 @@ pipeline {
                 }
             }
         }
-        stage ('Deploy')
-           steps {
+         stage ('Deploy'){
                sh "sudo docker run -itd --name container-$BUILD_NUMBER -p 8080:8082 dd999/myapp:${env.BUILD_NUMBER}"
            }
     }
